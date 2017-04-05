@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
+import { Router, Route, Navigation } from 'react-router'
 
 class StorePicker extends React.Component {
   render(){
@@ -60,18 +61,40 @@ class Order extends React.Component {
 }
 
 /* 
-  Order
+  Inventory
  */ 
 
 class Inventory extends React.Component {
   render() {
     return(
-      <p>Inventory</p>
+      <p>Not Found</p>
     )
   }
 }
 
+/* 
+  Not Found
+ */ 
+
+class NotFound extends React.Component {
+  render() {
+    return(
+      <h1>Not Found</h1>
+    )
+  }
+}
+
+
+/* 
+  Routes
+ */
+
+
 ReactDOM.render(
-  <App/>,
+  <Router>
+    <Route path="/" component={StorePicker}/>
+    <Route path="/:storeId" component={App}/>
+    <Route path="*" component={NotFound}/>
+  </Router>,
   document.getElementById('main')
 )
