@@ -1,14 +1,21 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
-import { Router, Route, Navigation } from 'react-router'
+import { Router, Route, Navigation, browserHistory } from 'react-router'
 import helpers from './helpers'
 
 class StorePicker extends React.Component {
+  mixins = [browserHistory]
+  goToStore = function(event) {
+    event.preventDefault();
+    // get the data from the input
+    const storeId = this.refs.storeId.value;
+    browserHistory.push(null, '/store' + storeId)
+  }
   render(){
     return(
-      <form className="store-selector">
+      <form className="store-selector" onSubmit={this.goToStore.bind(this)}>
         <h2>Please Enter a Store</h2>
-        <input type="text" ref="storeId" required/>
+        <input type="text" ref="storeId" defaultValue={helpers.getFunName()} required/>
         <input type="submit"/>
       </form>
     )
@@ -68,7 +75,7 @@ class Order extends React.Component {
 class Inventory extends React.Component {
   render() {
     return(
-      <p>Not Found</p>
+      <p>Inventory</p>
     )
   }
 }
