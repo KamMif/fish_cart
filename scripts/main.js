@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import { Router, Route, Navigation } from 'react-router'
+import helpers from './helpers'
 
 class StorePicker extends React.Component {
   render(){
